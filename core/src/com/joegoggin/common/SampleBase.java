@@ -11,7 +11,7 @@ public class SampleBase implements ApplicationListener, InputProcessor {
     }
 
     @Override
-    public void resize(int i, int i1) {
+    public void resize(int width, int height) {
 
     }
 

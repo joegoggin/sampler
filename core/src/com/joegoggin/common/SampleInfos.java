@@ -7,6 +7,7 @@ import com.joegoggin.GdxReflectionSample;
 import com.joegoggin.InputListeningSample;
 import com.joegoggin.InputPollingSample;
 import com.joegoggin.OrthographicCameraSample;
+import com.joegoggin.SpriteBatchSample;
 import com.joegoggin.ViewportSample;
 
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class SampleInfos {
             InputListeningSample.SAMPLE_INFO,
             InputPollingSample.SAMPLE_INFO,
             OrthographicCameraSample.SAMPLE_INFO,
-            ViewportSample.SAMPLE_INFO
+            ViewportSample.SAMPLE_INFO,
+            SpriteBatchSample.SAMPLE_INFO
 
     );
 

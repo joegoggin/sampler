@@ -19,8 +19,8 @@ public class OrthographicCameraSample extends SampleBase {
 
     public static final SampleInfo SAMPLE_INFO = new SampleInfo(OrthographicCameraSample.class);
 
-    private static final float WORLD_WIDTH = 10.8f; // world units
-    private static final float WORLD_HEIGHT = 7.2f; // world units
+    private static final float WORLD_WIDTH = 10.8f; // world units 1080 / 100 = 10.8
+    private static final float WORLD_HEIGHT = 7.2f; // world units 720 / 100 = 7.2
 
     private static final float CAMERA_SPEED = 2.0f; // world units
     private static final float CAMERA_ZOOM_SPEED = 2.0f; // world units
@@ -38,7 +38,7 @@ public class OrthographicCameraSample extends SampleBase {
         camera = new OrthographicCamera();
         camera.update();
 
-        viewport = new FitViewport(WORLD_WIDTH, WORLD_WIDTH, camera);
+        viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("raw/level-bg.png"));
 

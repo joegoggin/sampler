@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.joegoggin.common.SampleBase;
 import com.joegoggin.common.SampleInfo;
+import com.joegoggin.utils.GdxUtils;
 
 public class ViewportSample extends SampleBase {
 
@@ -23,8 +24,8 @@ public class ViewportSample extends SampleBase {
 
     public static final SampleInfo SAMPLE_INFO = new SampleInfo(ViewportSample.class);
 
-    private static final float WORLD_WIDTH = 800.0f;
-    private static final float WORLD_HEIGHT = 600.0f;
+    private static final float WORLD_WIDTH = 800.0f; // world units
+    private static final float WORLD_HEIGHT = 600.0f; // world units
 
     private OrthographicCamera camera;
     private Viewport currentViewport;
@@ -45,10 +46,29 @@ public class ViewportSample extends SampleBase {
         camera = new OrthographicCamera();
         batch = new SpriteBatch();
         texture = new Texture(Gdx.files.internal("raw/level-bg-small.png"));
-        font = new BitmapFont(Gdx.files.internal("font/oswald-32.fnt"));
+        font = new BitmapFont(Gdx.files.internal("fonts/oswald-32.fnt"));
 
         createViewports();
         selectNextViewport();
+
+        Gdx.input.setInputProcessor(this);
+    }
+
+    @Override
+    public void render() {
+        GdxUtils.clearScreen();
+
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+
+        draw();
+
+        batch.end();
+    }
+
+    private void draw() {
+        batch.draw(texture, 0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+        font.draw(batch, currentViewportName, 50, 100);
     }
 
     @Override
@@ -72,7 +92,7 @@ public class ViewportSample extends SampleBase {
     private void createViewports() {
         viewports.put(StretchViewport.class.getSimpleName(), new StretchViewport(WORLD_WIDTH, WORLD_HEIGHT, camera));
         viewports.put(FitViewport.class.getSimpleName(), new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera));
-        viewports.put(FillViewport.class.getSimpleName(), new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera));
+        viewports.put(FillViewport.class.getSimpleName(), new FillViewport(WORLD_WIDTH, WORLD_HEIGHT, camera));
         viewports.put(ScreenViewport.class.getSimpleName(), new ScreenViewport(camera));
         viewports.put(ExtendViewport.class.getSimpleName(), new ExtendViewport(WORLD_WIDTH, WORLD_HEIGHT, camera));
 

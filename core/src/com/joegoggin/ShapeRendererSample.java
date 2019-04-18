@@ -1,6 +1,7 @@
 package com.joegoggin;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,8 +15,8 @@ public class ShapeRendererSample extends SampleBase {
 
     public static final SampleInfo SAMPLE_INFO = new SampleInfo(ShapeRendererSample.class);
 
-    private static final float WORLD_WIDTH = 20f;
-    private static final float WORLD_HEIGHT = 40f;
+    private static final float WORLD_WIDTH = 40f;
+    private static final float WORLD_HEIGHT = 20f;
 
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -47,8 +48,20 @@ public class ShapeRendererSample extends SampleBase {
 
         renderer.setProjectionMatrix(camera.combined);
 
-        if(drawGrid) {
+        if (drawGrid) {
             drawGrid();
+        }
+
+        if (drawCircles) {
+            drawCircles();
+        }
+
+        if (drawRectangles) {
+            drawRectangles();
+        }
+
+        if (drawPoints) {
+            drawPoints();
         }
     }
 
@@ -59,11 +72,11 @@ public class ShapeRendererSample extends SampleBase {
         int worldWidth = (int) WORLD_WIDTH;
         int worldHeight = (int) WORLD_HEIGHT;
 
-        for(int x = -worldWidth; x < worldHeight; x++) {
+        for (int x = -worldWidth; x < worldHeight; x++) {
             renderer.line(x, -worldHeight, x, worldHeight);
         }
 
-        for(int y = -worldHeight; y < worldHeight; y++) {
+        for (int y = -worldHeight; y < worldHeight; y++) {
             renderer.line(-worldWidth, y, worldWidth, y);
         }
 
@@ -72,6 +85,57 @@ public class ShapeRendererSample extends SampleBase {
         renderer.line(0.0f, -worldHeight, 0.0f, worldHeight);
 
         renderer.end();
+    }
+
+    private void drawCircles() {
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        renderer.setColor(Color.GREEN);
+
+        renderer.circle(2, 2, 2, 30);
+        renderer.circle(-5, -5, 1);
+
+        renderer.end();
+    }
+
+    private void drawRectangles() {
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+
+        renderer.rect(-8, 4, 4, 2);
+        renderer.rect(-11, 3, 1, 5);
+
+        renderer.end();
+    }
+
+    private void drawPoints() {
+        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        renderer.setColor(Color.MAGENTA);
+
+        renderer.point(-5, 0, 0);
+        renderer.point(5, -3, 0);
+        renderer.point(8, 6, 1);
+
+        renderer.end();
+
+        renderer.begin(ShapeRenderer.ShapeType.Line);
+
+        renderer.x(-10, 0, 0.25f);
+
+        renderer.end();
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.G) {
+            drawGrid = !drawGrid;
+        } else if (keycode == Input.Keys.C) {
+            drawCircles = !drawCircles;
+        } else if (keycode == Input.Keys.R) {
+            drawRectangles = !drawRectangles;
+        } else if (keycode == Input.Keys.P) {
+            drawPoints = !drawPoints;
+        }
+
+        return true;
     }
 
     @Override

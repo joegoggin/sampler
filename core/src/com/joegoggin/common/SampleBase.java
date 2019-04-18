@@ -36,7 +36,7 @@ public class SampleBase implements ApplicationListener, InputProcessor {
     }
 
     @Override
-    public boolean keyDown(int i) {
+    public boolean keyDown(int keycode) {
         return false;
     }
 

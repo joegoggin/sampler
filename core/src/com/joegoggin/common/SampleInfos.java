@@ -1,6 +1,7 @@
 package com.joegoggin.common;
 
 import com.joegoggin.ApplicationListenerSample;
+import com.joegoggin.BitmapFontSample;
 import com.joegoggin.GdxGeneratedSample;
 import com.joegoggin.GdxModuleInfoSample;
 import com.joegoggin.GdxReflectionSample;
@@ -28,7 +29,8 @@ public class SampleInfos {
             OrthographicCameraSample.SAMPLE_INFO,
             ViewportSample.SAMPLE_INFO,
             SpriteBatchSample.SAMPLE_INFO,
-            ShapeRendererSample.SAMPLE_INFO
+            ShapeRendererSample.SAMPLE_INFO,
+            BitmapFontSample.SAMPLE_INFO
 
     );
 
